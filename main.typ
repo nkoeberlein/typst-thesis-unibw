@@ -20,9 +20,9 @@
 #let is-draft = false // ENTWURF-Wasserzeichen: true = sichtbar, false = kein Wasserzeichen
 #import "lib/styles.typ": *
 #import "lib/colors.typ": *
-#import "@preview/alexandria:0.2.2": *
 #import "@preview/glossarium:0.5.10": gls, glspl, make-glossary, print-glossary, register-glossary
 #import "chapters/anhang/glossary-entries.typ": glossary-entries
+#import "bibliography/image-sources.typ": image-sources-data
 
 // Alle set/show-Regeln aus lib/template.typ werden aktiv
 #show: template.with(meta: meta, is-print: is-print, is-draft: is-draft)
@@ -32,8 +32,6 @@
 #show: make-glossary
 #register-glossary(glossary-entries)
 
-// === Alexandria: Bildquellen als separate Bibliographie ===
-#show: alexandria(prefix: "img:", read: path => read(path))
 
 // ===================================================================
 // FRONTMATTER (Römische Seitennummerierung)
@@ -114,17 +112,12 @@
 #pagebreak()
 
 // ===================================================================
-// BILDQUELLENVERZEICHNIS (via Alexandria-Package)
-// Zitierung im Text: @img:placeholder1, @img:placeholder2, ...
+// BILDQUELLENVERZEICHNIS (System 2: römische Ziffern [I], [II], ...)
+// Zitierung im Text: source: [#imgcite("schluessel")]
+// Quellendaten in bibliography/image-sources.typ pflegen.
 // ===================================================================
 
-#bibliographyx(
-  "bibliography/image-sources.bib",
-  prefix: "img:",
-  title: "Bildquellenverzeichnis",
-  style: "ieee",
-  full: false, // true = alle Bildquellen anzeigen, auch nicht explizit zitierte
-)
+#print-img-sources(image-sources-data)
 
 #pagebreak()
 #this-page-empty()

@@ -1,7 +1,7 @@
 // =============================================================
-// title-page2.typ – Alternative Titelseite (klassisches UniBw-Layout)
+// title-page_alternative.typ – Alternative Titelseite (klassisches UniBw-Layout)
 // Aktivieren: In main.typ '#include "pages/title-page.typ"' durch
-//             '#include "pages/title-page2.typ"' ersetzen.
+//             '#include "pages/title-page_alternative.typ"' ersetzen.
 // Unterschied: Zeigt Fakultät, Institut und Professur im Header;
 //              kein Seminar-Badge; schlichter, traditioneller Stil.
 // =============================================================

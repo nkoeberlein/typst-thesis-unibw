@@ -1,4 +1,4 @@
-#import "../lib/styles.typ": img, important, note, tbl, tip
+#import "../lib/styles.typ": img, imgcite, important, note, tbl, tip
 
 = Hauptteil
 <chap-hauptteil>
@@ -28,7 +28,7 @@ Ein zentrales Element wissenschaftlicher Arbeiten sind Abbildungen. Abbildung
   "regensburg-uni.jpg",
   width: 50%,
   caption: [Campus der Universität Regensburg als Beispiel für eine Bild-Einbindung],
-  source: [@img:placeholder1],
+  source: [#imgcite("placeholder1")],
 ) <fig-regensburg>
 
 @fig-regensburg illustriert, wie Bilder mit `#img(...)` eingebunden werden. Die Funktion
@@ -39,7 +39,7 @@ Abbildungsverzeichnis übernommen. Lege eigene Bilder in den Ordner `media/` ab.
 #tip[
   *Eigene Bilder einbinden:* Kopiere dein Bild nach `media/meinbild.png` und schreibe:
   ```typst
-  #img("meinbild.png", width: 80%, caption: [Beschreibung], source: [@img:quellenkey])
+  #img("meinbild.png", width: 80%, caption: [Beschreibung], source: [#imgcite("quellenkey")])
   <fig-meinbild>
   ```
   Dann kannst du mit `@fig-meinbild` darauf verweisen.
