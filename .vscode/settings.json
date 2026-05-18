@@ -1,0 +1,12 @@
+{
+  // Tinymist findet die Bookerly-Schriftarten im fonts/-Ordner.
+  // Ohne diese Einstellung weicht die Live-Vorschau auf Libertinus ab.
+  "tinymist.fontPaths": [
+    "${workspaceFolder}/fonts"
+  ],
+
+  // Tinymist als Standard-Formatter für .typ-Dateien
+  "[typst]": {
+    "editor.defaultFormatter": "myriad-dreamin.tinymist"
+  }
+}
