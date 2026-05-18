@@ -1,0 +1,25 @@
+# Typst-Ausgabe (nur Wurzelverzeichnis, nicht resources/)
+/main.pdf
+
+# Typst-Cache
+.typst/
+
+# Editor / IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
+.directory
+
+# Claude Code (lokale Einstellungen)
+.claude/settings.local.json
+
+# Sicherung / Temp
+*~
+*.bak
