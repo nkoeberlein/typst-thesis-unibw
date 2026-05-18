@@ -280,7 +280,80 @@ Die Datei `bibliography/references.bib` enthält deine Quellen im BibTeX-Format:
 
 Zitieren im Text: `Laut @smith2023 ist...` oder `[@doe2024, S. 42]`.
 
-> **Tipp:** Du kannst Zotero, Mendeley oder Citavi zum Verwalten deiner Quellen nutzen und als `.bib` exportieren.
+### Zotero + Better BibTeX (empfohlen)
+
+[Zotero](https://www.zotero.org/) ist ein kostenloser Literaturmanager. Mit dem Plugin
+[Better BibTeX (BBT)](https://retorque.re/zotero-better-bibtex/) kannst du deine Bibliothek
+**automatisch und kontinuierlich** als `references.bib` exportieren – jede Änderung in Zotero
+landet sofort in der Vorlage.
+
+**Einrichtung (einmalig):**
+
+1. Zotero installieren → [zotero.org](https://www.zotero.org/download/)
+2. **Zotero Connector** (Browser-Plugin) installieren:
+   - Verfügbar für Chrome, Firefox, Safari, Edge → [zotero.org/download/connectors](https://www.zotero.org/download/connectors)
+   - Klick auf das Zotero-Symbol im Browser speichert die aktuelle Seite, PDF, oder DOI direkt in deine Zotero-Bibliothek – Metadaten werden automatisch erkannt
+   - Bei wissenschaftlichen Datenbanken (Google Scholar, IEEE Xplore, ACM DL, Springer) erkennt der Connector Artikel und importiert alle Felder korrekt
+3. Better BibTeX installieren:
+   - In Zotero: Werkzeuge → Add-ons → Zahnrad → „Install Add-on From File"
+   - `.xpi`-Datei von [github.com/retorquere/zotero-better-bibtex/releases](https://github.com/retorquere/zotero-better-bibtex/releases) herunterladen und auswählen
+3. Zotero neu starten → Better BibTeX wird automatisch konfiguriert
+
+**Auto-Export einrichten:**
+
+1. In Zotero die gewünschte Sammlung (oder „Meine Bibliothek") rechtsklicken
+2. „Exportieren…" wählen → Format: **Better BibTeX**
+3. Haken bei **„Halte aktuell"** setzen
+4. Speichern unter: `bibliography/references.bib` im Projektordner
+
+Ab jetzt wird die Datei bei jeder Änderung in Zotero automatisch aktualisiert.
+
+**Citation Keys:**
+
+BBT generiert automatisch Keys nach dem Muster `autorJahr` (z. B. `smith2023`). Den Key
+siehst du in Zotero in der Spalte „Citation Key" oder im Feld „Extra". Im Text zitierst du
+dann einfach `@smith2023`.
+
+> **Tipp:** Den Key-Stil kannst du in Zotero unter Bearbeiten → Einstellungen → Better BibTeX
+> → „Citation key formula" anpassen, z. B. auf `[auth:lower][year]` für `smith2023`.
+
+**Empfohlenes weiteres Plugin – ZotMoov:**
+
+[ZotMoov](https://github.com/wileyyugioh/zotmoov) verschiebt PDF-Anhänge automatisch in
+einen frei wählbaren Ordner (z. B. in der Cloud oder ein geteiltes Verzeichnis) und verlinkt
+sie in Zotero weiterhin korrekt. Nützlich wenn du PDFs in einem eigenen Sync-Ordner
+(Nextcloud, OneDrive …) zentral aufbewahren willst, anstatt im Zotero-Datenspeicher.
+
+- Installation: Werkzeuge → Add-ons → Zahnrad → „Install Add-on From File" (`.xpi` von GitHub)
+- Einrichten: Zotero → Einstellungen → ZotMoov → Zielordner eintragen → fertig
+
+---
+
+## Literatur durcharbeiten mit NotebookLM
+
+[NotebookLM](https://notebooklm.google.com/) (Google) ist ein KI-gestütztes Werkzeug, das
+deine eigenen Quellen als Wissensbasis nutzt – es erfindet keine Fakten, sondern antwortet
+**ausschließlich auf Basis der hochgeladenen Dokumente**.
+
+**Typischer Workflow für eine wissenschaftliche Arbeit:**
+
+1. PDFs aus Zotero exportieren (oder direkt den ZotMoov-Ordner nutzen)
+2. In NotebookLM ein neues Notebook anlegen → Quellen hochladen (PDF, Google Doc, URL, …)
+3. Fragen stellen, Zusammenfassungen erstellen lassen, Widersprüche zwischen Quellen
+   herausarbeiten, Gliederungsideen entwickeln
+
+**Nützliche Prompts für die Literaturarbeit:**
+
+| Ziel | Beispiel-Prompt |
+|------|-----------------|
+| Überblick gewinnen | „Fasse die Kernaussagen aller Quellen in 5 Sätzen zusammen." |
+| Forschungslücke finden | „Welche offenen Fragen nennen die Autoren?" |
+| Vergleichen | „Wie unterscheiden sich Methode A und Methode B in den Quellen?" |
+| Gliederung ableiten | „Schlage eine Gliederung für eine Bachelorarbeit zu diesem Thema vor." |
+| Zitate finden | „Nenne wörtliche Stellen, die die These X stützen." |
+
+> **Datenschutz-Hinweis:** NotebookLM verarbeitet Inhalte auf Google-Servern. Für
+> vertrauliche oder klassifizierte Dokumente ist es nicht geeignet.
 
 ---
 
@@ -386,9 +459,9 @@ make lint     # Prüft Formatierung (ohne zu schreiben)
 
 ## Empfohlenes Arbeitsumfeld
 
-### IDE: VS Code + Tinymist-Plugin
+### IDE: Antigravity + Tinymist-Plugin
 
-Das **Tinymist**-Plugin ist der de-facto-Standard für Typst in VS Code. Es bietet:
+Das **Tinymist Typst**-Plugin ist der de-facto-Standard für Typst in Antigravity bzw. VS Code. Es bietet:
 
 - **Live-Vorschau** direkt im Editor (Strg+Shift+P → „Typst Preview")
 - Syntaxhervorhebung und Fehleranzeige in Echtzeit
@@ -396,7 +469,7 @@ Das **Tinymist**-Plugin ist der de-facto-Standard für Typst in VS Code. Es biet
 - Sprung zu Definitionen (z. B. von `#img` direkt zu `styles.typ`)
 
 **Installation:**
-1. VS Code öffnen → Erweiterungen (Strg+Shift+X)
+1. IDE öffnen → Erweiterungen (Strg+Shift+X)
 2. Nach `Tinymist` suchen → installieren
 3. Eine `.typ`-Datei öffnen → oben rechts auf das Vorschau-Symbol klicken
 
@@ -424,7 +497,7 @@ dieser Vorlage an eigene Anforderungen — ohne Typst-Expertenwissen vorauszuset
 
 ```bash
 # Installation (einmalig)
-npm install -g @anthropic-ai/claude-code
+curl -fsSL https://claude.ai/install.sh | bash
 
 # Im Projektverzeichnis starten
 cd wissenschaftlArbeit_UniBw_typst2
