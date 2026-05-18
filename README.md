@@ -1,5 +1,7 @@
 # Typst-Vorlage für wissenschaftliche Arbeiten (Anfänger-freundlich)
 
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 Eine moderne, gut dokumentierte Typst-Vorlage für Bachelor-, Master- und Seminararbeiten – optimiert für Studierende, die zum ersten Mal mit Typst arbeiten.
 
 > **Was ist Typst?** Typst ist ein alternatives Textsatzsystem zu LaTeX. Es ist schneller, die Syntax ist einfacher (wie Markdown) und Fehlermeldungen sind verständlicher.
@@ -445,3 +447,18 @@ claude
 ---
 
 Viel Erfolg bei deiner Arbeit!
+
+---
+
+## Lizenz
+
+Diese Vorlage steht unter der [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) Lizenz.
+
+**Das bedeutet:** Du darfst die Vorlage frei nutzen, anpassen und weitergeben – auch für kommerzielle Zwecke – solange du den Urheber nennst:
+
+> Vorlage von Nikolaus Köberlein (@nkoeberlein) – [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+**Empfohlene Nennung in einer Abschlussarbeit** (z. B. in der Danksagung oder einer Fußnote):
+
+> Diese Arbeit wurde mit der Typst-Vorlage von Nikolaus Köberlein erstellt
+> (https://github.com/nkoeberlein), lizenziert unter CC BY 4.0.
