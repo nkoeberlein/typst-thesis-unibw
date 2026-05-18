@@ -99,7 +99,8 @@ pages/                   # Frontmatter-Seiten
   acknowledgments.typ    # Danksagung (optional)
 bibliography/
   references.bib         # DEINE Literaturquellen (BibTeX-Format)
-  image-sources.bib      # Bildquellen
+  image-sources.bib      # DEINE Bildquellen (BibTeX-Format) ← hier pflegen
+  image-sources.typ      # Parser (liest .bib automatisch – NICHT bearbeiten)
 fonts/                   # Bookerly-Schriftart (optional)
 media/                   # DEINE Bilder und Grafiken
 resources/               # Uni-Logo etc.
@@ -165,15 +166,18 @@ Laut @smith2023 ist dies wichtig.
 Bilder legst du in den Ordner `media/` ab. Der Pfad wird automatisch ergänzt – nur den Dateinamen angeben.
 
 ```typst
-// Bild mit Unterschrift – empfohlen (aus lib/styles.typ)
+// Bild mit Unterschrift und Quellenangabe – empfohlen (aus lib/styles.typ)
 #img(
   "MeinBild.png",
   caption: [Beschreibung des Bildes],
   width: 80%,
+  source: [#imgcite("quellenkey")],   // Bildquelle angeben (optional)
 ) <fig-meinbild>
 ```
 
 Im Text referenzieren: `@fig-meinbild` → wird zu „Abb. 1.1".
+
+`#imgcite("quellenkey")` erzeugt einen anklickbaren Link `[I]`, `[II]`, … der direkt zum Eintrag im **Bildquellenverzeichnis** führt. Den Key definierst du in `bibliography/image-sources.bib` (→ Abschnitt [Bildquellenverzeichnis](#bildquellenverzeichnis-verwalten)).
 
 ### 6. Tabellen
 
@@ -278,6 +282,49 @@ Zitieren im Text: `Laut @smith2023 ist...` oder `[@doe2024, S. 42]`.
 
 ---
 
+## Bildquellenverzeichnis verwalten
+
+Die Vorlage nutzt **zwei getrennte Quellenverzeichnisse**:
+
+| System | Datei | Nummerierung | Verwendung |
+|--------|-------|--------------|------------|
+| Literatur | `bibliography/references.bib` | Arabisch [1], [2], … | `@key` im Text |
+| Bildquellen | `bibliography/image-sources.bib` | Römisch [I], [II], … | `#imgcite("key")` im `source:`-Parameter |
+
+### Eintrag in `image-sources.bib` anlegen
+
+```bibtex
+@online{mein-screenshot,
+  author = {Max Mustermann},
+  title  = {Screenshot des Dashboards},
+  url    = {https://example.com/bild.png},
+  year   = {2024},
+  note   = {Abgerufen am 12. Mai 2024},
+}
+```
+
+Unterstützte Felder: `author`, `title`, `url`, `year`, `note`. BibTeX-Typen `@online`, `@misc` und `@article` werden alle erkannt.
+
+### Bildquelle im Kapitel zitieren
+
+```typst
+// Am Anfang der Kapitel-Datei importieren:
+#import "../lib/styles.typ": img, imgcite
+
+// Beim Bild angeben:
+#img(
+  "dashboard.png",
+  caption: [Übersicht des Dashboards],
+  source: [#imgcite("mein-screenshot")],
+) <fig-dashboard>
+```
+
+Das ergibt in der Bildunterschrift: _Quelle: [I]_ – anklickbar und verlinkt zum Eintrag im Bildquellenverzeichnis.
+
+> **Hinweis:** Im generierten PDF führen die Links `[I]`, `[II]` stets zum Bildquellenverzeichnis am Ende des Dokuments – nicht direkt zu einer externen URL.
+
+---
+
 ## Häufige Fehler und Lösungen
 
 | Fehler | Lösung |
@@ -287,6 +334,8 @@ Zitieren im Text: `Laut @smith2023 ist...` oder `[@doe2024, S. 42]`.
 | `@key` wird nicht erkannt | In `references.bib` prüfen ob der Key existiert |
 | Schriftart sieht komisch aus | `--font-path fonts` beim Kompilieren nicht vergessen! |
 | `label <...> does not exist` | Prüfen ob das Label mit `<name>` gesetzt wurde |
+| `unknown variable: imgcite` | Import fehlt: `#import "../lib/styles.typ": imgcite` am Anfang der Kapitel-Datei |
+| `[?]` statt `[I]` im Text | Key in `image-sources.bib` nicht vorhanden oder falsch geschrieben |
 
 ---
 

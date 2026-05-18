@@ -24,7 +24,7 @@ Kapitelinhalte der Arbeit. Jede Datei entspricht einem Hauptkapitel.
 
 - Jedes Kapitel beginnt mit `= Kapitelname` (Level-1-Heading mit Anker-Label `<chap-name>`)
 - Imports aus lib immer relativ: `#import "../lib/styles.typ": img, tbl`
-- Bilder: `#img("dateiname.jpg", caption: [...], source: [@img:key])` — Pfad relativ zu `media/`
+- Bilder: `#img("dateiname.jpg", caption: [...], source: [#imgcite("key")])` — Pfad relativ zu `media/`, Key aus `bibliography/image-sources.typ`
 - Abkürzungen im Text: `#gls("KEY")` (Glossarium), Plural: `#glspl("KEY")`
 - Querverweise auf Kapitel: `@chap-grundlagen`
 - Neue Kapitel in `main.typ` via `#include "chapters/neues-kapitel.typ"` einbinden

@@ -259,18 +259,10 @@
 //    Verzeichnis: #print-img-sources(image-sources-data)
 // =============================================================
 
-/// Interne State-Variablen
+/// Interner State: Reihenfolge der zitierten Bildquellen
 #let img-cite-order = state("img-cite-order", ())
-#let img-url-map    = state("img-url-map", (:))
 
-/// Einmalig in main.typ aufrufen: registriert URLs für imgcite-Links
-#let img-register-sources(sources) = {
-  let m = (:)
-  for s in sources { m.insert(s.key, s.at("url", default: none)) }
-  img-url-map.update(_ => m)
-}
-
-/// Bildquellen-Zitat – rendert [I], [II], … als klickbaren Link zur Quelle
+/// Bildquellen-Zitat – rendert [I], [II], … als internen Link zum Bildquellenverzeichnis
 #let imgcite(key) = {
   img-cite-order.update(order => {
     if order.contains(key) { order } else { order + (key,) }
@@ -278,9 +270,8 @@
   context {
     let order = img-cite-order.final()
     let idx   = order.position(k => k == key)
-    let label = if idx == none { [?] } else { [#numbering("I", idx + 1)] }
-    let url   = img-url-map.final().at(key, default: none)
-    if url != none { link(url, [\[#label\]]) } else { [\[#label\]] }
+    let num   = if idx == none { [?] } else { [#numbering("I", idx + 1)] }
+    link(label("img-src-" + key), [\[#num\]])
   }
 }
 
@@ -312,6 +303,8 @@
         if note   != none { [ #note.] }
       }
 
+      // Anker für internen Link aus imgcite-Zitaten
+      [#metadata(key)#label("img-src-" + key)]
       block(above: 0.8em, below: 0em,
         grid(
           columns: (2.8em, 1fr),
