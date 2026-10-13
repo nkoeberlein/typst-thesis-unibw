@@ -141,7 +141,7 @@
       }
     ],
     kind: table,
-    supplement: "Tabelle",
+    supplement: "Tab.",
     ..args,
   )
 }
@@ -216,11 +216,11 @@
 /// Quellen-Fußnote: fügt "Quelle: ..." ein
 #let sourcefootnote(source) = footnote[_Quelle:_ #source]
 
-/// Anmerkung des Verfassers als Fußnote
-#let authornote(note) = footnote[_Anmerkung des Verfassers:_ #note]
+/// Anmerkung des Verfassers
+#let authornote(note) = footnote[_Anm. d. Verf.:_ #note]
 
-/// Übersetzung durch den Verfasser als Fußnote
-#let transnote(note) = footnote[_Übersetzung durch den Verfasser:_ #note]
+/// Übersetzung des Verfassers
+#let transnote(note) = footnote[_Übersetzung d. Verf.:_ #note]
 
 // =============================================================
 // 5. TEXT-HILFSFUNKTIONEN
@@ -252,71 +252,16 @@
 )
 
 // =============================================================
-// 7. BILDQUELLEN-SYSTEM (Römische Ziffern)
-//    Ersetzt Alexandria/@img:-Zitierweise.
+// 7. BILDQUELLEN-ZITIERUNG
 //
-//    Zitieren:   source: [#imgcite("key")]
-//    Verzeichnis: #print-img-sources(image-sources-data)
+// Ab Typst 0.15: Multiple Bibliographien nativ unterstützt.
+// Bildquellen werden als separate bibliography() eingebunden
+// und über @key direkt zitiert.
+//
+// Verwendung in figure caption: source: [@imgkey]
+// Quellen in: bibliography/image-sources.bib
+// Verzeichnis: separate bibliography() in main.typ
 // =============================================================
-
-/// Interner State: Reihenfolge der zitierten Bildquellen
-#let img-cite-order = state("img-cite-order", ())
-
-/// Bildquellen-Zitat – rendert [I], [II], … als internen Link zum Bildquellenverzeichnis
-#let imgcite(key) = {
-  img-cite-order.update(order => {
-    if order.contains(key) { order } else { order + (key,) }
-  })
-  context {
-    let order = img-cite-order.final()
-    let idx   = order.position(k => k == key)
-    let num   = if idx == none { [?] } else { [#numbering("I", idx + 1)] }
-    link(label("img-src-" + key), [\[#num\]])
-  }
-}
-
-/// Bildquellenverzeichnis mit römischen Ziffern
-/// Übergabe: image-sources-data aus bibliography/image-sources.typ
-/// full: true → alle Quellen anzeigen, auch nicht zitierte
-#let print-img-sources(sources, full: false) = {
-  heading(level: 1, numbering: none, outlined: true)[Bildquellenverzeichnis]
-  context {
-    let order = img-cite-order.final()
-    let keys = if full { sources.map(s => s.key) } else { order }
-
-    for (i, key) in keys.enumerate() {
-      let entry = sources.find(s => s.key == key)
-      if entry == none { continue }
-
-      let num = numbering("I", i + 1)
-      let author = entry.at("author", default: none)
-      let title  = entry.at("title",  default: none)
-      let year   = entry.at("year",   default: none)
-      let url    = entry.at("url",    default: none)
-      let note   = entry.at("note",   default: none)
-
-      let body = {
-        if author != none { [#author. ] }
-        if title  != none { emph(title) + [. ] }
-        if year   != none { [#str(year). ] }
-        if url    != none { [URL: ] + link(url, [#url]) + [.] }
-        if note   != none { [ #note.] }
-      }
-
-      // Anker für internen Link aus imgcite-Zitaten
-      [#metadata(key)#label("img-src-" + key)]
-      block(above: 0.8em, below: 0em,
-        grid(
-          columns: (2.8em, 1fr),
-          gutter: 0pt,
-          align: (right, left),
-          text(weight: "bold")[\[#num\]],
-          pad(left: 0.8em, body),
-        )
-      )
-    }
-  }
-}
 
 /// Abkürzungsverzeichnis als Tabelle darstellen
 #let abbr-table(entries) = table(
@@ -325,7 +270,7 @@
   inset: (x: 6pt, y: 5pt),
   table.header(
     text(weight: "bold", fill: headingcolor)[Abkürzung],
-    text(weight: "bold", fill: headingcolor)[Bedeutung],
+    text(weight: "bold", fill: headingcolor)[Ausschreibung],
     text(weight: "bold", fill: headingcolor)[Beschreibung],
   ),
   ..entries.flatten(),

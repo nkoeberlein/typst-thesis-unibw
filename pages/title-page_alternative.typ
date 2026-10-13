@@ -2,11 +2,12 @@
 // title-page_alternative.typ – Alternative Titelseite (klassisches UniBw-Layout)
 // Aktivieren: In main.typ '#include "pages/title-page.typ"' durch
 //             '#include "pages/title-page_alternative.typ"' ersetzen.
-// Unterschied: Zeigt Fakultät, Institut und Professur im Header;
-//              kein Seminar-Badge; schlichter, traditioneller Stil.
+// Unterschied: Schwarzer Text ohne Trennlinien, Titel in Überschriftenfarbe,
+//              Institut zusätzlich unter dem Namen, Betreuer linksbündig.
 // =============================================================
 
 #import "../metadata.typ": *
+#import "../lib/dates.typ": german-date
 #import "../lib/colors.typ": *
 
 #set page(
@@ -78,7 +79,7 @@
     ..(if advisor != "" { ([Betreuer:], [#advisor]) } else { () }),
     [], [],
     [Tag der Einreichung:], [
-      #timeend.display("[day]. [month repr:long] [year]"),
+      #german-date(timeend),
       #myplace
     ],
   )

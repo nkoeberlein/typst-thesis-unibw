@@ -1,4 +1,4 @@
-#import "../lib/styles.typ": img, imgcite, important, note, tbl, tip
+#import "../lib/styles.typ": img, important, note, tbl, tip
 
 = Hauptteil
 <chap-hauptteil>
@@ -21,14 +21,14 @@ Die Vorgehensweise gliedert sich in folgende Schritte:
 
 == Beispielabbildung
 
-Ein zentrales Element wissenschaftlicher Arbeiten sind Abbildungen. Abbildung
+Ein zentrales Element wissenschaftlicher Arbeiten sind Abbildungen.
 @fig-regensburg zeigt den Campus der Universität Regensburg als Platzhalter für eigene Bilder.
 
 #img(
   "regensburg-uni.jpg",
   width: 50%,
   caption: [Campus der Universität Regensburg als Beispiel für eine Bild-Einbindung],
-  source: [#imgcite("placeholder1")],
+  source: [@placeholder1],
 ) <fig-regensburg>
 
 @fig-regensburg illustriert, wie Bilder mit `#img(...)` eingebunden werden. Die Funktion
@@ -39,7 +39,7 @@ Abbildungsverzeichnis übernommen. Lege eigene Bilder in den Ordner `media/` ab.
 #tip[
   *Eigene Bilder einbinden:* Kopiere dein Bild nach `media/meinbild.png` und schreibe:
   ```typst
-  #img("meinbild.png", width: 80%, caption: [Beschreibung], source: [#imgcite("quellenkey")])
+  #img("meinbild.png", width: 80%, caption: [Beschreibung], source: [@quellenkey])
   <fig-meinbild>
   ```
   Dann kannst du mit `@fig-meinbild` darauf verweisen.
@@ -47,7 +47,7 @@ Abbildungsverzeichnis übernommen. Lege eigene Bilder in den Ordner `media/` ab.
 
 == Nummerierte mathematische Gleichungen
 
-Im Unterschied zu den abgesetzten Formeln in Kapitel @chap-grundlagen können Gleichungen
+Im Unterschied zu den abgesetzten Formeln in @chap-grundlagen können Gleichungen
 auch nummeriert werden — dafür wickelst du sie in `#figure(...)` ein:
 
 #figure(
@@ -56,7 +56,7 @@ auch nummeriert werden — dafür wickelst du sie in `#figure(...)` ein:
   supplement: [Gleichung],
 ) <eq-einstein>
 
-Gleichung @eq-einstein ist wohl die bekannteste Formel der Physik. Ebenso klassisch ist
+@eq-einstein ist wohl die bekannteste Formel der Physik. Ebenso klassisch ist
 das Gaußsche Fehlerintegral:
 
 #figure(
@@ -65,7 +65,7 @@ das Gaußsche Fehlerintegral:
   supplement: [Gleichung],
 ) <eq-gauss>
 
-Gleichung @eq-gauss taucht in der Wahrscheinlichkeitstheorie und Signalverarbeitung
+@eq-gauss taucht in der Wahrscheinlichkeitstheorie und Signalverarbeitung
 häufig auf. Das Label `<eq-gauss>` und der Verweis `@eq-gauss` folgen demselben Prinzip
 wie bei Abbildungen und Tabellen.
 
@@ -76,7 +76,7 @@ Syntax-Highlighting für über 100 Programmiersprachen — kein externes Paket n
 
 === Python-Beispiel
 
-Listing @lst-python zeigt eine iterative Python-Funktion mit Typ-Annotationen und
+@lst-python zeigt eine iterative Python-Funktion mit Typ-Annotationen und
 Docstring.
 
 #figure(
@@ -110,7 +110,7 @@ Docstring.
 
 === JSON-Konfiguration
 
-Auch Konfigurationsdateien lassen sich gut darstellen, wie Listing @lst-json zeigt.
+Auch Konfigurationsdateien lassen sich gut darstellen, wie @lst-json zeigt.
 
 #figure(
   ```json
@@ -123,8 +123,7 @@ Auch Konfigurationsdateien lassen sich gut darstellen, wie Listing @lst-json zei
       "line_spacing": 1.2
     },
     "dependencies": {
-      "glossarium": "0.5.10",
-      "alexandria": "0.2.2"
+      "glossarium": "0.5.10"
     }
   }
   ```,
@@ -135,7 +134,7 @@ Auch Konfigurationsdateien lassen sich gut darstellen, wie Listing @lst-json zei
 
 === Shell-Skript
 
-Listing @lst-bash demonstriert ein praktisches Shell-Skript für die Arbeit mit Typst.
+@lst-bash demonstriert ein praktisches Shell-Skript für die Arbeit mit Typst.
 
 #figure(
   ```bash
@@ -165,7 +164,7 @@ Listing @lst-bash demonstriert ein praktisches Shell-Skript für die Arbeit mit 
 == Datenanalyse in Tabellenform
 
 Komplexere Tabellen mit Kopfzeile und unterschiedlicher Spaltenausrichtung lassen sich
-mit `#tbl(table(...), caption: [...])` erstellen. Tabelle @tab-metriken fasst verschiedene
+mit `#tbl(table(...), caption: [...])` erstellen. @tab-metriken fasst verschiedene
 Metriken zusammen.
 
 #tbl(

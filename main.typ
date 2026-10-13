@@ -2,7 +2,6 @@
 // ===================================================================
 // main.typ – Hauptdokument
 // Moderne Typst-Vorlage für wissenschaftliche Arbeiten
-// Universität Regensburg
 // ===================================================================
 //
 // KOMPILIERUNG:
@@ -15,14 +14,13 @@
 
 // === Importe ===
 #import "metadata.typ": *
-#import "lib/template.typ": appendix-start, loc, lof, lot, template, this-page-empty, toc
+#import "lib/template.typ": appendix-start, loc, lof, lot, template, toc
 #let is-print = false // Doppelseiten-Layout: true = Druck, false = Bildschirm/PDF
 #let is-draft = false // ENTWURF-Wasserzeichen: true = sichtbar, false = kein Wasserzeichen
 #import "lib/styles.typ": *
 #import "lib/colors.typ": *
 #import "@preview/glossarium:0.5.10": gls, glspl, make-glossary, print-glossary, register-glossary
 #import "chapters/anhang/glossary-entries.typ": glossary-entries
-#import "bibliography/image-sources.typ": image-sources-data
 
 // Alle set/show-Regeln aus lib/template.typ werden aktiv
 #show: template.with(meta: meta, is-print: is-print, is-draft: is-draft)
@@ -98,6 +96,7 @@
 
 // ===================================================================
 // LITERATURVERZEICHNIS
+// Ab Typst 0.15: Mehrere bibliography()-Aufrufe nativ unterstützt.
 // ===================================================================
 
 #set heading(numbering: none)
@@ -105,22 +104,32 @@
 #bibliography(
   "bibliography/references.bib",
   title: "Literaturverzeichnis",
-  style: "ieee", // Alternativen: "apa", "chicago-author-date", "mla"
+  // Lokale IEEE-Variante: gruppiert Mehrfachverweise zu [2, 3] statt [2], [3].
+  // Alternativen (eingebaut): "ieee", "apa", "chicago-author-date", "mla"
+  style: "bibliography/ieee-grouped.csl",
   full: false, // true = alle Quellen anzeigen, auch nicht zitierte
 )
 
 #pagebreak()
 
 // ===================================================================
-// BILDQUELLENVERZEICHNIS (System 2: römische Ziffern [I], [II], ...)
-// Zitierung im Text: source: [#imgcite("schluessel")]
-// Quellendaten in bibliography/image-sources.typ pflegen.
+// BILDQUELLENVERZEICHNIS
+// Zitierung im Text:  source: [@imgkey]  (Key muss in image-sources.bib existieren)
+// Quellen in:         bibliography/image-sources.bib
+//
+// Typst ordnet jede Zitation automatisch dem Verzeichnis zu, in dessen
+// .bib-Datei der Key steht; die Nummerierung läuft über beide Verzeichnisse
+// durch. Keine Bildquellen? Dann diesen Block auskommentieren.
 // ===================================================================
 
-#print-img-sources(image-sources-data)
+#bibliography(
+  "bibliography/image-sources.bib",
+  title: "Bildquellenverzeichnis",
+  style: "ieee",
+  full: false,
+)
 
 #pagebreak()
-#this-page-empty()
 
 // ===================================================================
 // ANHANG

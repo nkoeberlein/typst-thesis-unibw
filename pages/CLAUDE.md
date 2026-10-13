@@ -6,11 +6,12 @@ Frontmatter-Seiten (vor dem Inhaltsverzeichnis). Alle nutzen `metadata.typ` für
 
 | Datei                  | Inhalt | Pflicht? |
 |------------------------|--------|----------|
-| `title-page.typ`       | Titelseite mit Uni-Logo, Titel, Autor, Betreuer, Datum | Ja |
+| `title-page.typ`       | Titelseite: Signet, Fakultät/Institut/Professur/Aufgabensteller im Kopf, Titel, Autor, Betreuer, Datum | Ja |
+| `title-page_alternative.typ` | Schlichtere Variante der Titelseite; statt `title-page.typ` in `main.typ` einbinden | Alternativ |
 | `abstract.typ`         | Zusammenfassung (Deutsch & Englisch) | Empfohlen |
 | `declaration.typ`      | Eidesstattliche Erklärung | Ja (für Abgabe) |
 | `acknowledgments.typ`  | Danksagung | Optional |
-| `task-description.typ` | Aufgabenstellung (hochschulspezifisch) | Optional |
+| `task-description.typ` | Aufgabenstellung: Überschrift + ein Platzhalter-Absatz (hochschulspezifisch) | Optional |
 
 ## Konventionen
 

@@ -20,8 +20,8 @@ erfüllt:
 - *Flexible Struktur:* Neue Kapitel lassen sich einfach hinzufügen; die Reihenfolge ist
   zentral in `main.typ` steuerbar.
 - *Glossar-Integration:* Abkürzungen wie @ki, @api oder @pdf werden beim ersten Auftreten
-  ausgeschrieben und danach in Kurzform angezeigt. Das Glossar im Anhang enthält
-  automatische Rückverweise.
+  ausgeschrieben und danach in Kurzform angezeigt. Das Abkürzungs- und
+  Begriffsverzeichnis im Anhang listet alle Einträge auf.
 - *Nummerierte Gleichungen:* Mathematische Formeln wie @eq-einstein können über
   `#figure()` nummeriert und im Text referenziert werden.
 - *Code-Listings:* Eingebautes Syntax-Highlighting für über 100 Sprachen ohne externe

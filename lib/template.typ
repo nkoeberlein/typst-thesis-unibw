@@ -54,6 +54,8 @@
 /// Anhang-Bereich einleiten – Aufruf via `#show: appendix-start` in main.typ
 #let appendix-start(body) = {
   show heading: set heading(numbering: "A.1")
+  // Querverweise: "Anhang A" statt "Kapitel A"
+  show heading.where(level: 1): set heading(supplement: [Anhang])
   show heading.where(level: 2): set heading(outlined: false)
   counter(heading).update(0)
   state("is_appendix", false).update(true)
@@ -185,11 +187,16 @@
 
   set par(
     justify: true,
-    leading: 0.65em,
+    leading: 0.73em,
     spacing: 0.85em,
     first-line-indent: 0pt,
   )
   set heading(numbering: "1.1")
+
+  // Querverweise auf Level-1-Überschriften sollen "Kapitel 3" statt des
+  // Typst-Standards "Abschnitt 3" ergeben; Unterabschnitte bleiben "Abschnitt".
+  // Im Anhang stellt `appendix-start` das Supplement auf "Anhang" um.
+  show heading.where(level: 1): set heading(supplement: [Kapitel])
 
   show heading.where(level: 1): it => context {
     counter(figure.where(kind: image)).update(0)
@@ -258,7 +265,7 @@
     font: "DejaVu Sans Mono",
     size: 1em,
   )
-  show raw: set par(leading: 0.4em, spacing: 0.4em)
+  show raw.where(block: true): set par(leading: 0.4em, spacing: 0.4em)
 
   // Code-Block mit Hintergrund und Rahmen
   show raw.where(block: true): it => {
@@ -301,6 +308,29 @@
     [#numbering(prefix, ch).#n]
   }
 
+  // Referenzen auf Abbildungen/Tabellen/Listings am ZIELORT auflösen:
+  // Die Nummernfunktion oben wertet counter(heading) am Referenz-Standort
+  // aus, sodass ein Verweis aus Kapitel 5 auf eine Anhang-Abbildung die
+  // Kapitelnummer des verweisenden Kapitels zeigt. Diese ref-Regel baut
+  // Supplement + Präfix + Nummer stattdessen über die Location des
+  // referenzierten Elements auf und stellt so ortstreue Nummern sicher.
+  show ref: it => {
+    let el = it.element
+    if el != none and el.func() == figure and el.kind in (image, table, raw) {
+      context {
+        let loc = el.location()
+        let ch = counter(heading).at(loc).at(0, default: 0)
+        let is-appx = state("is_appendix", false).at(loc)
+        let n = counter(figure.where(kind: el.kind)).at(loc).at(0, default: 0)
+        let pfx = if is-appx { numbering("A", ch) } else { str(ch) }
+        let supp = if it.supplement == auto { el.supplement } else { it.supplement }
+        link(loc)[#supp~#pfx.#n]
+      }
+    } else {
+      it
+    }
+  }
+
   show figure.where(kind: image): set figure(
     numbering: fig-numbering,
     supplement: [Abb.],
@@ -309,6 +339,7 @@
     numbering: fig-numbering,
     supplement: [Tab.],
   )
+  show figure.where(kind: table): set block(breakable: true)
   show figure.where(kind: raw): set figure(
     numbering: fig-numbering,
     supplement: [Code],

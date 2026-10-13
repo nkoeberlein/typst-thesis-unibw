@@ -32,7 +32,7 @@ Bevor wir fortfahren, werden zentrale Begriffe formal definiert.
 
 === Unterschied: LaTeX vs. Typst
 
-Die Wahl des Textsatzsystems ist entscheidend für den Workflow. Tabelle @tab-vergleich
+Die Wahl des Textsatzsystems ist entscheidend für den Workflow. @tab-vergleich
 zeigt einen direkten Vergleich der beiden Systeme.
 
 #tbl(
@@ -140,7 +140,7 @@ $
 #tip[
   *Nummerierte Gleichungen* — wenn du auf eine Formel mit `@eq-name` verweisen möchtest,
   wickle sie in `#figure($ ... $, caption: [...], supplement: [Gleichung]) <eq-name>` ein.
-  Ein Beispiel dafür findet sich in Kapitel @chap-hauptteil.
+  Ein Beispiel dafür findet sich in @chap-hauptteil.
 ]
 
 == Abkürzungen und Glossar
@@ -158,8 +158,8 @@ Weitere Beispiele aus dem Glossar dieser Vorlage:
 - @ide — Werkzeug zum Schreiben von Code
 - @os — Betriebssystem, auf dem Typst läuft
 
-Das Glossar im Anhang listet alle definierten Abkürzungen auf — inklusive automatischer
-Rückverweise auf die Textstellen, an denen sie verwendet wurden.
+Das Abkürzungs- und Begriffsverzeichnis im Anhang listet alle definierten Einträge auf —
+auch solche, die im Text nicht referenziert werden.
 
 == Stand der Forschung
 

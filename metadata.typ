@@ -9,14 +9,13 @@
 
 // --- Arbeit ---
 #let mytitle = "Titel der Arbeit"
-#let myseminar = "Oberbegriff oder Seminartitel" // Leer lassen ("") wenn kein Themenbereich
 #let mytype = "Seminararbeit"   // Bachelorarbeit / Masterarbeit / Seminararbeit
 
 // --- Institution ---
 #let myuniversity = "Universität der Bundeswehr München"
 #let myfaculty = "Fakultät für Informatik"
 #let myinstitute = "Institut für ..."
-#let myprofessur = "Prof. Dr. Mustermann"
+#let myprofessur = "Professur für ..."
 
 // --- Betreuer (optionale Felder: "" = wird auf der Titelseite ausgeblendet) ---
 #let reviewerone = "Prof. Dr. Mustermann"
@@ -32,7 +31,6 @@
   myname: myname,
   matricle: matricle,
   mytitle: mytitle,
-  myseminar: myseminar,
   mytype: mytype,
   myuniversity: myuniversity,
   myfaculty: myfaculty,

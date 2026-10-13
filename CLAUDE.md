@@ -11,9 +11,10 @@ Typst-Vorlage für wissenschaftliche Arbeiten (Bachelor/Master/Seminar) an der U
 
 | Datei              | Zweck |
 |--------------------|-------|
-| `lib/template.typ` | Seiten-Layout, Kopf/Fußzeilen, Heading-Styles, Figure-Formatierung (402 Zeilen – Kernlogik) |
+| `lib/template.typ` | Seiten-Layout, Kopf/Fußzeilen, Heading-Styles, Figure-Formatierung (443 Zeilen – Kernlogik) |
 | `lib/styles.typ`   | Theorem-/Callout-Umgebungen, `img`/`tbl`-Wrapper, Hilfsfunktionen |
 | `lib/colors.typ`   | Farbpalette: `primary`, `secondary`, `accent`, `headingcolor` |
+| `lib/dates.typ`    | Deutsche Datumsausgabe: `german-date`, `german-month-year` |
 | `metadata.typ`     | Metadaten-Dictionary `meta` das an `template.with(meta: meta)` übergeben wird |
 
 ## Build
@@ -31,7 +32,15 @@ make format         # typstyle format-all
 - Bilder immer über `#img(...)` aus `styles.typ` – setzt Pfad relativ zu `media/` und fügt Quellen-Fußnote an
 - Tabellen über `#tbl(...)` statt nacktem `table(...)` für einheitliche Formatierung
 - Theorem-Umgebungen: `#definition()`, `#satz()`, `#lemma()`, `#beispiel()` aus `styles.typ`
-- Abbildungen zitieren: `@img:key` (Alexandria-Paket), Literatur: `@key` (BibTeX)
+- Literatur zitieren: `@key` (BibTeX) – Quellen in `bibliography/references.bib`
+- Bildquellen zitieren: `@key` in `source:` – Quellen in `bibliography/image-sources.bib`; eigenes
+  `#bibliography()` in `main.typ` (mehrere Verzeichnisse erst ab Typst 0.15)
+- Zitierstil ist die lokale Datei `bibliography/ieee-grouped.csl`, **nicht** der in
+  Typst eingebaute `"ieee"`: Nur so stehen aufeinanderfolgende Quellen in einer
+  gemeinsamen Klammer (`[2, 3]` statt `[2], [3]`). Aufsteigend sortiert, mit
+  Seitenangaben als `[2, S. 12f., 3]` via `@key[S. 12f.]`
+- Querverweise ohne vorangestelltes Wort schreiben: `@chap-x` ergibt „Kapitel 3" (im Anhang
+  „Anhang A"), `@fig-x` „Abb. 3.1" – das Supplement setzt `lib/template.typ`
 - `is-print = true` in `main.typ` aktiviert Doppelseiten-Layout (Kapitel auf ungerade Seiten); Standard: `false`
 - `is-draft = true` in `main.typ` aktiviert ENTWURF-Wasserzeichen; Standard: `false`
 - Optionale Titelseiten-Felder (`reviewertwo`, `advisor`) auf `""` setzen → werden automatisch ausgeblendet
@@ -41,5 +50,9 @@ make format         # typstyle format-all
 
 - `glossarium` muss NACH `#show: template.with(...)` aktiviert werden (Konflikte mit figure show-rules)
 - `--font-path fonts` beim Kompilieren ist Pflicht für Bookerly; ohne Flag fällt Typst auf Libertinus zurück
-- `lib/template.typ` ist 402 Zeilen (über 300-Limit) – Refactoring-Kandidat; Aufteilung in layout/headings/figures möglich
+- `lib/template.typ` ist 443 Zeilen (über 300-Limit) – Refactoring-Kandidat; Aufteilung in layout/headings/figures möglich
 - Anhang-Nummerierung (`A.1`) wird über `state("is_appendix")` gesteuert – vor dem Anhang auf `true` setzen
+- Die `show ref`-Regel in `lib/template.typ` löst Abbildungs-/Tabellen-/Listing-Nummern am Zielort auf;
+  ohne sie zeigt ein Verweis die Kapitelnummer der verweisenden Stelle
+- `datetime.display("[month repr:long]")` liefert englische Monatsnamen – für ausgeschriebene Daten
+  `german-date` aus `lib/dates.typ` nehmen

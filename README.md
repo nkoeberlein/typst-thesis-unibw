@@ -10,7 +10,7 @@ Eine moderne, gut dokumentierte Typst-Vorlage für Bachelor-, Master- und Semina
 
 ## Voraussetzungen
 
-- [Typst](https://typst.app/) >= 0.13 installiert (`typst --version`)
+- [Typst](https://typst.app/) >= 0.15 installiert (`typst --version`) – ältere Versionen können das zweite Quellenverzeichnis für Bilder nicht
 - Optional: [typstyle](https://github.com/Enter-tainer/typstyle) für automatische Formatierung
 
 > **Installation von Typst (Linux/macOS):**
@@ -30,7 +30,6 @@ Eine moderne, gut dokumentierte Typst-Vorlage für Bachelor-, Master- und Semina
 #let myname = "Max Mustermann"
 #let matricle = "12345678"
 #let mytitle = "Meine tolle Abschlussarbeit"
-#let myseminar = "Software Engineering"   // oder leer lassen: ""
 #let mytype = "Bachelorarbeit"
 ```
 
@@ -39,11 +38,11 @@ Eine moderne, gut dokumentierte Typst-Vorlage für Bachelor-, Master- und Semina
 | `myname`       | Dein vollständiger Name            | Anna Schmidt |
 | `matricle`     | Deine Matrikelnummer               | 12345678 |
 | `mytitle`      | Titel der Arbeit                   | KI in der Medizin |
-| `myseminar`    | Seminar/Oberbegriff (optional)     | Machine Learning |
 | `mytype`       | Art der Arbeit                     | Bachelorarbeit |
 | `myuniversity` | Name der Uni                       | Universität der Bundeswehr München |
 | `myfaculty`    | Fakultät                           | Fakultät für Informatik |
 | `myinstitute`  | Institut/Lehrstuhl                 | Lehrstuhl für Software Engineering |
+| `myprofessur`  | Professur                          | Professur für Data Science |
 | `reviewerone`  | Erstgutachter/Betreuer             | Prof. Dr. Müller |
 | `reviewertwo`  | Zweitgutachter (optional, `""` = ausblenden) | Prof. Dr. Schmidt |
 | `advisor`      | Betreuer (optional, `""` = ausblenden) | Dr. Mustermann |
@@ -84,13 +83,14 @@ lib/
   template.typ           # Seitenlayout, Kopf/Fußzeilen (normalerweise NICHT ändern)
   styles.typ             # Farben, Boxen, Theoreme (normalerweise NICHT ändern)
   colors.typ             # Farbpalette
+  dates.typ              # Deutsche Datumsausgabe (Titelseite, Danksagung)
 chapters/                # HIER schreibst du deine Kapitel!
   einleitung.typ
   grundlagen.typ
   hauptteil.typ
   schluss.typ
   anhang/
-    glossary.typ         # Glossar-Anzeige
+    glossary.typ         # Abkürzungs- und Begriffsverzeichnis
     glossary-entries.typ # DEINE Abkürzungen & Begriffe
     code-examples.typ    # Code-Beispiele im Anhang
 pages/                   # Frontmatter-Seiten
@@ -101,8 +101,8 @@ pages/                   # Frontmatter-Seiten
   acknowledgments.typ    # Danksagung (optional)
 bibliography/
   references.bib         # DEINE Literaturquellen (BibTeX-Format)
-  image-sources.bib      # DEINE Bildquellen (BibTeX-Format) ← hier pflegen
-  image-sources.typ      # Parser (liest .bib automatisch – NICHT bearbeiten)
+  image-sources.bib      # DEINE Bildquellen (BibTeX-Format)
+  ieee-grouped.csl       # Zitierstil: IEEE mit gruppierten Verweisen [1, 2]
 fonts/                   # Bookerly-Schriftart (optional)
 media/                   # DEINE Bilder und Grafiken
 resources/               # Uni-Logo etc.
@@ -149,7 +149,7 @@ _kursiv_       // Kursivschrift
 
 ```typst
 // Auf ein Kapitel verweisen (Label muss existieren!)
-Siehe Kapitel @chap-einleitung.
+Siehe @chap-einleitung.
 
 // Literatur zitieren (aus bibliography/references.bib)
 Laut @smith2023 ist dies wichtig.
@@ -163,6 +163,8 @@ Laut @smith2023 ist dies wichtig.
 
 **Wichtig:** Ein Label setzt du mit `<name>` direkt nach einem Element. Du verweist mit `@name` darauf.
 
+Das Wort vor der Nummer setzt die Vorlage selbst: `@chap-einleitung` ergibt „Kapitel 1", ein Unterabschnitt „Abschnitt 1.2", ein Anhang „Anhang A", Abbildungen „Abb. 3.1". Schreibe also **nicht** „Kapitel @chap-einleitung" – sonst steht „Kapitel Kapitel 1" im PDF.
+
 ### 5. Bilder einfügen
 
 Bilder legst du in den Ordner `media/` ab. Der Pfad wird automatisch ergänzt – nur den Dateinamen angeben.
@@ -173,13 +175,13 @@ Bilder legst du in den Ordner `media/` ab. Der Pfad wird automatisch ergänzt �
   "MeinBild.png",
   caption: [Beschreibung des Bildes],
   width: 80%,
-  source: [#imgcite("quellenkey")],   // Bildquelle angeben (optional)
+  source: [@quellenkey],   // Bildquelle angeben (optional)
 ) <fig-meinbild>
 ```
 
 Im Text referenzieren: `@fig-meinbild` → wird zu „Abb. 1.1".
 
-`#imgcite("quellenkey")` erzeugt einen anklickbaren Link `[I]`, `[II]`, … der direkt zum Eintrag im **Bildquellenverzeichnis** führt. Den Key definierst du in `bibliography/image-sources.bib` (→ Abschnitt [Bildquellenverzeichnis](#bildquellenverzeichnis-verwalten)).
+`@quellenkey` erzeugt einen anklickbaren Verweis, der direkt zum Eintrag im **Bildquellenverzeichnis** führt. Den Key definierst du in `bibliography/image-sources.bib` (→ Abschnitt [Bildquellenverzeichnis](#bildquellenverzeichnis-verwalten)).
 
 ### 6. Tabellen
 
@@ -280,6 +282,8 @@ Die Datei `bibliography/references.bib` enthält deine Quellen im BibTeX-Format:
 
 Zitieren im Text: `Laut @smith2023 ist...` oder `[@doe2024, S. 42]`.
 
+Als Zitierstil ist in `main.typ` die lokale Datei `bibliography/ieee-grouped.csl` eingestellt. Anders als der in Typst eingebaute Stil `"ieee"` fasst sie aufeinanderfolgende Quellen in einer Klammer zusammen: `@smith2023 @doe2024` ergibt `[1, 2]` statt `[1], [2]`. Für einen anderen Stil trägst du dort z. B. `style: "apa"` ein.
+
 ### Zotero + Better BibTeX (empfohlen)
 
 [Zotero](https://www.zotero.org/) ist ein kostenloser Literaturmanager. Mit dem Plugin
@@ -359,44 +363,42 @@ deine eigenen Quellen als Wissensbasis nutzt – es erfindet keine Fakten, sonde
 
 ## Bildquellenverzeichnis verwalten
 
-Die Vorlage nutzt **zwei getrennte Quellenverzeichnisse**:
+Die Vorlage nutzt **zwei getrennte Quellenverzeichnisse**. Typst unterstützt ab Version 0.15 mehrere `#bibliography()`-Aufrufe und ordnet jede Zitation automatisch dem Verzeichnis zu, in dessen `.bib`-Datei der Key steht:
 
-| System | Datei | Nummerierung | Verwendung |
-|--------|-------|--------------|------------|
-| Literatur | `bibliography/references.bib` | Arabisch [1], [2], … | `@key` im Text |
-| Bildquellen | `bibliography/image-sources.bib` | Römisch [I], [II], … | `#imgcite("key")` im `source:`-Parameter |
+| Verzeichnis | Datei | Verwendung |
+|-------------|-------|------------|
+| Literatur | `bibliography/references.bib` | `@key` im Text |
+| Bildquellen | `bibliography/image-sources.bib` | `@key` im `source:`-Parameter |
+
+Die Nummerierung läuft über beide Verzeichnisse durch: Bei zwei zitierten Literaturquellen erhält die erste Bildquelle die `[3]`. Vergib jeden Key nur in **einer** der beiden Dateien: Steht er in beiden, landet die Zitation ohne Fehlermeldung im Literaturverzeichnis.
 
 ### Eintrag in `image-sources.bib` anlegen
 
 ```bibtex
 @online{mein-screenshot,
-  author = {Max Mustermann},
-  title  = {Screenshot des Dashboards},
-  url    = {https://example.com/bild.png},
-  year   = {2024},
-  note   = {Abgerufen am 12. Mai 2024},
+  author  = {Max Mustermann},
+  title   = {Screenshot des Dashboards},
+  url     = {https://example.com/bild.png},
+  year    = {2024},
+  urldate = {2024-05-12},
 }
 ```
-
-Unterstützte Felder: `author`, `title`, `url`, `year`, `note`. BibTeX-Typen `@online`, `@misc` und `@article` werden alle erkannt.
 
 ### Bildquelle im Kapitel zitieren
 
 ```typst
-// Am Anfang der Kapitel-Datei importieren:
-#import "../lib/styles.typ": img, imgcite
+#import "../lib/styles.typ": img
 
-// Beim Bild angeben:
 #img(
   "dashboard.png",
   caption: [Übersicht des Dashboards],
-  source: [#imgcite("mein-screenshot")],
+  source: [@mein-screenshot],
 ) <fig-dashboard>
 ```
 
-Das ergibt in der Bildunterschrift: _Quelle: [I]_ – anklickbar und verlinkt zum Eintrag im Bildquellenverzeichnis.
+Das ergibt in der Bildunterschrift: _Quelle: [3]_ – anklickbar und verlinkt zum Eintrag im Bildquellenverzeichnis.
 
-> **Hinweis:** Im generierten PDF führen die Links `[I]`, `[II]` stets zum Bildquellenverzeichnis am Ende des Dokuments – nicht direkt zu einer externen URL.
+> **Keine Bildquellen?** Dann den Block `BILDQUELLENVERZEICHNIS` in `main.typ` auskommentieren, sonst erscheint eine leere Überschrift.
 
 ---
 
@@ -404,13 +406,13 @@ Das ergibt in der Bildunterschrift: _Quelle: [I]_ – anklickbar und verlinkt zu
 
 | Fehler | Lösung |
 |--------|--------|
-| `unknown variable: myseminar` | In `metadata.typ` den Wert für `myseminar` setzen (auch wenn leer: `""`) |
+| `unknown variable: advisor` | Variable in `metadata.typ` wurde gelöscht – optionale Felder auf `""` setzen statt entfernen |
 | `file not found: media/...` | Bild existiert nicht in `media/`-Ordner oder falscher Dateiname |
 | `@key` wird nicht erkannt | In `references.bib` prüfen ob der Key existiert |
 | Schriftart sieht komisch aus | `--font-path fonts` beim Kompilieren nicht vergessen! |
 | `label <...> does not exist` | Prüfen ob das Label mit `<name>` gesetzt wurde |
-| `unknown variable: imgcite` | Import fehlt: `#import "../lib/styles.typ": imgcite` am Anfang der Kapitel-Datei |
-| `[?]` statt `[I]` im Text | Key in `image-sources.bib` nicht vorhanden oder falsch geschrieben |
+| `unknown variable: imgcite` | `#imgcite("key")` gibt es nicht mehr – Bildquellen mit `source: [@key]` zitieren |
+| Bildquelle erscheint im Literaturverzeichnis | Derselbe Key steht in `references.bib` und `image-sources.bib` – einen umbenennen |
 
 ---
 
@@ -489,7 +491,7 @@ dieser Vorlage an eigene Anforderungen — ohne Typst-Expertenwissen vorauszuset
 |---------|-----------------|
 | Layout anpassen | „Vergrößere den linken Rand auf 35 mm für Bindung" |
 | Neue Umgebung | „Füge eine `hypothese`-Box analog zu `#definition()` hinzu" |
-| Titelseite ändern | „Entferne den Seminar-Badge, zeige nur Titel und Autor" |
+| Titelseite ändern | „Entferne die Matrikelnummer, zeige nur Titel und Autor" |
 | Fehler verstehen | Fehlermeldung einfach einfügen und erklären lassen |
 | Vorlage portieren | „Passe die Vorlage an die Vorgaben der TU München an" |
 
@@ -530,6 +532,8 @@ Diese Vorlage steht unter der [Creative Commons Attribution 4.0 International (C
 **Das bedeutet:** Du darfst die Vorlage frei nutzen, anpassen und weitergeben – auch für kommerzielle Zwecke – solange du den Urheber nennst:
 
 > Vorlage von Nikolaus Köberlein (@nkoeberlein) – [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+**Ausnahme:** `bibliography/ieee-grouped.csl` ist eine angepasste Kopie des IEEE-Stils aus dem [Zotero-Stilrepositorium](https://www.zotero.org/styles/ieee) und steht unter [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
 **Empfohlene Nennung in einer Abschlussarbeit** (z. B. in der Danksagung oder einer Fußnote):
 

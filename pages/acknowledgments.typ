@@ -5,6 +5,7 @@
 // =============================================================
 
 #import "../metadata.typ": myname, myplace, timeend
+#import "../lib/dates.typ": german-month-year
 
 // ── Vorwort ──────────────────────────────────────────────────
 // Das Vorwort ist optional. Es beschreibt den persönlichen Zugang
@@ -40,7 +41,7 @@ die dich während der Entstehungszeit unterstützt haben.]_
 
 #v(1cm)
 
-#myplace, im #timeend.display("[month repr:long] [year]")
+#myplace, im #german-month-year(timeend)
 
 #v(1.5cm)
 

@@ -35,12 +35,12 @@ werden folgende Fragen beantwortet:
 
 Die Arbeit ist in vier Hauptkapitel gegliedert:
 
-1. *Einleitung* (Kapitel @chap-einleitung): Motivation, Zielsetzung und Typst-Grundlagen.
-2. *Grundlagen* (Kapitel @chap-grundlagen): Theoretischer Hintergrund, Definitionen,
+1. *Einleitung* (@chap-einleitung): Motivation, Zielsetzung und Typst-Grundlagen.
+2. *Grundlagen* (@chap-grundlagen): Theoretischer Hintergrund, Definitionen,
    Tabellen und Theorem-Umgebungen.
-3. *Hauptteil* (Kapitel @chap-hauptteil): Methodik, Abbildungen, Code-Listings und
+3. *Hauptteil* (@chap-hauptteil): Methodik, Abbildungen, Code-Listings und
    mathematische Formeln mit Nummerierung.
-4. *Schlussbetrachtung* (Kapitel @chap-schluss): Zusammenfassung, Limitationen und Ausblick.
+4. *Schlussbetrachtung* (@chap-schluss): Zusammenfassung, Limitationen und Ausblick.
 
 Im Anhang befinden sich ein Glossar mit Abkürzungen wie @ki, @api und @ide sowie
 ausführliche Code-Beispiele.
@@ -97,14 +97,14 @@ setzt du direkt nach einem Element:
 = Mein Kapitel <chap-mein-kapitel>
 ```
 
-Dann verweist du mit `@chap-mein-kapitel` darauf, z. B.: „Siehe Kapitel @chap-einleitung."
+Dann verweist du mit `@chap-mein-kapitel` darauf, z. B.: „Siehe @chap-einleitung."
 
 *Literaturzitate* aus der `.bib`-Datei funktionieren genauso: `@smith2023` wird
 automatisch als @smith2023 formatiert und ins Literaturverzeichnis übernommen.
 Seitenangaben sind möglich: `[@doe2024, S. 42]` ergibt @doe2024[S. 42].
 
 *Abbildungen und Tabellen* referenzierst du über ihr Label:
-`@fig-regensburg` → Abbildung @fig-regensburg im Hauptteil.
+`@fig-regensburg` → @fig-regensburg im Hauptteil.
 
 === Abkürzungen und Glossar
 
