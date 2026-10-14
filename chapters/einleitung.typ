@@ -104,7 +104,7 @@ automatisch als @smith2023 formatiert und ins Literaturverzeichnis übernommen.
 Seitenangaben sind möglich: `[@doe2024, S. 42]` ergibt @doe2024[S. 42].
 
 *Abbildungen und Tabellen* referenzierst du über ihr Label:
-`@fig-regensburg` → @fig-regensburg im Hauptteil.
+`@fig-beispiel` → @fig-beispiel im Hauptteil.
 
 === Abkürzungen und Glossar
 

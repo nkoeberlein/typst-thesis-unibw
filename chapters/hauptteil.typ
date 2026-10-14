@@ -22,16 +22,16 @@ Die Vorgehensweise gliedert sich in folgende Schritte:
 == Beispielabbildung
 
 Ein zentrales Element wissenschaftlicher Arbeiten sind Abbildungen.
-@fig-regensburg zeigt den Campus der Universität Regensburg als Platzhalter für eigene Bilder.
+@fig-beispiel zeigt eine einfache Architekturskizze als Platzhalter für eigene Bilder.
 
 #img(
-  "regensburg-uni.jpg",
-  width: 50%,
-  caption: [Campus der Universität Regensburg als Beispiel für eine Bild-Einbindung],
+  "beispiel-architektur.svg",
+  width: 80%,
+  caption: [Beispielhafte Verarbeitungskette als Platzhalter für eine eigene Abbildung],
   source: [@placeholder1],
-) <fig-regensburg>
+) <fig-beispiel>
 
-@fig-regensburg illustriert, wie Bilder mit `#img(...)` eingebunden werden. Die Funktion
+@fig-beispiel illustriert, wie Bilder mit `#img(...)` eingebunden werden. Die Funktion
 erwartet den Dateinamen relativ zu `media/`, eine Caption und optional eine Quellenangabe.
 Die Quelle erscheint kursiv unter der Bildunterschrift, wird aber *nicht* ins
 Abbildungsverzeichnis übernommen. Lege eigene Bilder in den Ordner `media/` ab.
@@ -143,7 +143,7 @@ Auch Konfigurationsdateien lassen sich gut darstellen, wie @lst-json zeigt.
 
   echo "Starte Typst-Kompilierung..."
 
-  # Einmalig kompilieren (mit Bookerly-Font)
+  # Einmalig kompilieren
   typst compile --font-path fonts main.typ output.pdf
 
   # Oder: Live-Vorschau bei Änderungen

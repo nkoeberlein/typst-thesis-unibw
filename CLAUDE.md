@@ -1,6 +1,7 @@
-# wissenschaftlicheArbeit_UniR_typst
+# typst-thesis-unibw
 
-Typst-Vorlage für wissenschaftliche Arbeiten (Bachelor/Master/Seminar) an der Universität Regensburg.
+Typst-Vorlage für wissenschaftliche Arbeiten (Bachelor/Master/Seminar) an der Universität der Bundeswehr München.
+Schwesterprojekt: LaTeX-Version unter `../wissenschaftlArbeit_UniBw_latex` (GitHub `latex-vorlage-unibw-inf`).
 
 ## Einstiegspunkte
 
@@ -49,7 +50,8 @@ make format         # typstyle format-all
 ## Gotchas
 
 - `glossarium` muss NACH `#show: template.with(...)` aktiviert werden (Konflikte mit figure show-rules)
-- `--font-path fonts` beim Kompilieren ist Pflicht für Bookerly; ohne Flag fällt Typst auf Libertinus zurück
+- Schrift ist Libertinus Serif (in Typst eingebaut); `fonts/` ist nur für optionale eigene Schriften.
+  Keine proprietären Schriften (z. B. Bookerly) committen – das Repo ist öffentlich und CC BY 4.0
 - `lib/template.typ` ist 443 Zeilen (über 300-Limit) – Refactoring-Kandidat; Aufteilung in layout/headings/figures möglich
 - Anhang-Nummerierung (`A.1`) wird über `state("is_appendix")` gesteuert – vor dem Anhang auf `true` setzen
 - Die `show ref`-Regel in `lib/template.typ` löst Abbildungs-/Tabellen-/Listing-Nummern am Zielort auf;

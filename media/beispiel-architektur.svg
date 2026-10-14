@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" font-family="Helvetica, Arial, sans-serif">
+  <!-- Beispielgrafik der Vorlage (eigene Darstellung, CC BY 4.0) -->
+  <defs>
+    <marker id="pfeil" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#656165"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="640" height="260" fill="#ffffff"/>
+
+  <g stroke="#1c1c1c" stroke-width="1.5" fill="#f0f0f0">
+    <rect x="20" y="90" width="160" height="80" rx="8"/>
+    <rect x="240" y="40" width="160" height="80" rx="8"/>
+    <rect x="240" y="140" width="160" height="80" rx="8"/>
+    <rect x="460" y="90" width="160" height="80" rx="8" fill="#fde3d3" stroke="#f46717"/>
+  </g>
+
+  <g font-size="17" text-anchor="middle" fill="#1c1c1c">
+    <text x="100" y="125" font-weight="bold">Datenquelle</text>
+    <text x="100" y="148" font-size="13" fill="#656165">Rohdaten</text>
+    <text x="320" y="75" font-weight="bold">Vorverarbeitung</text>
+    <text x="320" y="98" font-size="13" fill="#656165">Bereinigung</text>
+    <text x="320" y="175" font-weight="bold">Analyse</text>
+    <text x="320" y="198" font-size="13" fill="#656165">Modell</text>
+    <text x="540" y="125" font-weight="bold">Ergebnis</text>
+    <text x="540" y="148" font-size="13" fill="#656165">Auswertung</text>
+  </g>
+
+  <g stroke="#656165" stroke-width="1.8" fill="none" marker-end="url(#pfeil)">
+    <path d="M180,120 L238,85"/>
+    <path d="M320,120 L320,138"/>
+    <path d="M400,175 L458,140"/>
+  </g>
+</svg>

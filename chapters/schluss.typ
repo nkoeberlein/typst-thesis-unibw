@@ -31,11 +31,11 @@ erfüllt:
 
 Trotz der umfassenden Funktionalität weist die Vorlage einige Einschränkungen auf:
 
-- Die Vorlage ist auf deutsche Hochschulen (insbesondere UniBw / Universität Regensburg)
+- Die Vorlage ist auf deutsche Hochschulen (insbesondere die UniBw München)
   zugeschnitten. Für andere Institutionen müssen ggf. Logo, Eidesstattliche Erklärung
   und Schreibkonventionen angepasst werden.
-- Die Schriftart *Bookerly* ist optional — ohne `--font-path fonts` fällt Typst auf
-  *Libertinus Serif* zurück. Das @pdf sieht dann leicht anders aus.
+- Als Schrift ist *Libertinus Serif* gesetzt, die in Typst bereits enthalten ist. Eigene
+  Schriften legst du in `fonts/` ab und trägst sie in `lib/template.typ` ein.
 - Der Druck-Modus (`is-print = true` in `main.typ`) erzwingt Kapitel auf ungeraden Seiten
   und kann zu leeren Seiten führen. Für die reine Bildschirmansicht empfiehlt sich
   `is-print = false`.

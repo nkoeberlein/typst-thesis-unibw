@@ -1,4 +1,4 @@
-# Makefile – wissenschaftlicheArbeit_UniR_typst
+# Makefile – typst-thesis-unibw
 # Verwendung: make [target]
 
 MAIN     := main.typ
