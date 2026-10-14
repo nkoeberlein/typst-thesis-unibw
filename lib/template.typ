@@ -174,9 +174,9 @@
   )
 
   // --- Schriftarten ---
-  // Standardmäßig werden Libertinus Serif / New Computer Modern verwendet.
-  // Falls Bookerly (aus /fonts) genutzt werden soll, muss beim Kompilieren:
-  // typst compile --font-path fonts main.typ verwendet werden.
+  // Libertinus Serif ist in Typst enthalten (SIL Open Font License) – keine Installation nötig.
+  // Eigene Schrift: Dateien nach fonts/ legen, Namen hier vorne in die Liste eintragen und
+  // mit --font-path fonts kompilieren (macht das Makefile bereits).
   set text(
     font: ("Libertinus Serif", "New Computer Modern"),
     size: 11pt,

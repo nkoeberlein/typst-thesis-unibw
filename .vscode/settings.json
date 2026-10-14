@@ -1,6 +1,5 @@
 {
-  // Tinymist findet die Bookerly-Schriftarten im fonts/-Ordner.
-  // Ohne diese Einstellung weicht die Live-Vorschau auf Libertinus ab.
+  // Tinymist findet eigene Schriften im fonts/-Ordner (optional, Standard ist Libertinus).
   "tinymist.fontPaths": [
     "${workspaceFolder}/fonts"
   ],

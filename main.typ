@@ -10,7 +10,7 @@
 // AUTOMATISCHES NEU-KOMPILIEREN BEI ÄNDERUNGEN:
 //   typst watch --font-path fonts main.typ
 //
-// Hinweis: Der Font-Pfad ist notwendig, damit Bookerly aus dem /fonts-Ordner erkannt wird.
+// Hinweis: --font-path fonts bindet eigene Schriften aus fonts/ ein (optional).
 
 // === Importe ===
 #import "metadata.typ": *
