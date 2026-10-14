@@ -9,6 +9,10 @@ Eine moderne, gut dokumentierte Typst-Vorlage für Bachelor-, Master- und Semina
 > **Lieber LaTeX statt Typst?** Es gibt dieselbe Vorlage auch als LuaLaTeX-Version mit gleichem Aufbau und gleichen Metadaten:
 > [latex-vorlage-unibw-inf](https://github.com/nkoeberlein/latex-vorlage-unibw-inf)
 
+![Vorschau: Titelseite, Inhaltsverzeichnis, Kapitel mit Abbildung und Code-Anhang](docs/preview.png)
+
+<sub>Titelseite · Inhaltsverzeichnis · Kapitel mit Abbildung · Code-Anhang – erzeugt aus dieser Vorlage ohne Änderungen.</sub>
+
 ---
 
 ## Voraussetzungen
@@ -58,7 +62,7 @@ Eine moderne, gut dokumentierte Typst-Vorlage für Bachelor-, Master- und Semina
 make build
 
 # Oder direkt mit Typst
-# WICHTIG: --font-path fonts ist nötig, damit die Bookerly-Schriftart gefunden wird!
+# --font-path fonts bindet optionale eigene Schriften aus fonts/ ein
 typst compile --font-path fonts main.typ
 
 # PDF wird als main.pdf erstellt
@@ -106,7 +110,7 @@ bibliography/
   references.bib         # DEINE Literaturquellen (BibTeX-Format)
   image-sources.bib      # DEINE Bildquellen (BibTeX-Format)
   ieee-grouped.csl       # Zitierstil: IEEE mit gruppierten Verweisen [1, 2]
-fonts/                   # Bookerly-Schriftart (optional)
+fonts/                   # Optional: eigene, frei lizenzierte Schriften
 media/                   # DEINE Bilder und Grafiken
 resources/               # Uni-Logo etc.
 ```
@@ -412,7 +416,7 @@ Das ergibt in der Bildunterschrift: _Quelle: [3]_ – anklickbar und verlinkt zu
 | `unknown variable: advisor` | Variable in `metadata.typ` wurde gelöscht – optionale Felder auf `""` setzen statt entfernen |
 | `file not found: media/...` | Bild existiert nicht in `media/`-Ordner oder falscher Dateiname |
 | `@key` wird nicht erkannt | In `references.bib` prüfen ob der Key existiert |
-| Schriftart sieht komisch aus | `--font-path fonts` beim Kompilieren nicht vergessen! |
+| Eigene Schrift wird nicht genutzt | Mit `--font-path fonts` kompilieren und den Namen in `lib/template.typ` eintragen |
 | `label <...> does not exist` | Prüfen ob das Label mit `<name>` gesetzt wurde |
 | `unknown variable: imgcite` | `#imgcite("key")` gibt es nicht mehr – Bildquellen mit `source: [@key]` zitieren |
 | Bildquelle erscheint im Literaturverzeichnis | Derselbe Key steht in `references.bib` und `image-sources.bib` – einen umbenennen |
@@ -536,7 +540,13 @@ Diese Vorlage steht unter der [Creative Commons Attribution 4.0 International (C
 
 > Vorlage von Nikolaus Köberlein (@nkoeberlein) – [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-**Ausnahme:** `bibliography/ieee-grouped.csl` ist eine angepasste Kopie des IEEE-Stils aus dem [Zotero-Stilrepositorium](https://www.zotero.org/styles/ieee) und steht unter [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+**Ausnahmen** – diese Bestandteile fallen nicht unter CC BY 4.0:
+
+| Bestandteil | Rechte |
+|---|---|
+| `resources/Signet_UniBw.pdf`, `resources/Athene*.png` | Logo und Signet der Universität der Bundeswehr München. Alle Rechte bei der UniBw M; nur für Arbeiten an der UniBw verwenden. |
+| `bibliography/ieee-grouped.csl` | Basiert auf dem IEEE-Stil aus dem [Zotero-Stilrepositorium](https://www.zotero.org/styles/ieee); eigene Anpassung: gruppierte Verweise `[2, 3]`. Als Bearbeitung weiterhin [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). |
+| Schrift *Libertinus Serif* | In Typst enthalten, [SIL Open Font License 1.1](https://github.com/alerque/libertinus/blob/master/OFL.txt) – nicht Teil dieses Repositorys. |
 
 **Empfohlene Nennung in einer Abschlussarbeit** (z. B. in der Danksagung oder einer Fußnote):
 

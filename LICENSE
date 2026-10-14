@@ -18,3 +18,10 @@ No additional restrictions — You may not apply legal terms or technological
 measures that legally restrict others from doing anything the license permits.
 
 Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Exceptions (not covered by CC BY 4.0, see README section "Lizenz"):
+  - resources/Signet_UniBw.pdf, resources/Athene*.png – logos of the
+    Universität der Bundeswehr München, all rights reserved by UniBw M
+  - bibliography/ieee-grouped.csl – based on the IEEE style from the Zotero
+    style repository with own changes (grouped citations); as an adaptation
+    it remains under CC BY-SA 3.0
