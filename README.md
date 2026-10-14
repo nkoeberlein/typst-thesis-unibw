@@ -6,6 +6,9 @@ Eine moderne, gut dokumentierte Typst-Vorlage für Bachelor-, Master- und Semina
 
 > **Was ist Typst?** Typst ist ein alternatives Textsatzsystem zu LaTeX. Es ist schneller, die Syntax ist einfacher (wie Markdown) und Fehlermeldungen sind verständlicher.
 
+> **Lieber LaTeX statt Typst?** Es gibt dieselbe Vorlage auch als LuaLaTeX-Version mit gleichem Aufbau und gleichen Metadaten:
+> [latex-vorlage-unibw-inf](https://github.com/nkoeberlein/latex-vorlage-unibw-inf)
+
 ---
 
 ## Voraussetzungen
