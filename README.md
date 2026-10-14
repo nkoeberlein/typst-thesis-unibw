@@ -9,6 +9,8 @@ Eine moderne, gut dokumentierte Typst-Vorlage für Bachelor-, Master- und Semina
 > **Lieber LaTeX statt Typst?** Es gibt dieselbe Vorlage auch als LuaLaTeX-Version mit gleichem Aufbau und gleichen Metadaten:
 > [latex-vorlage-unibw-inf](https://github.com/nkoeberlein/latex-vorlage-unibw-inf)
 
+> **📘 Richtlinien der UniBw:** [Richtlinien zur Anfertigung wissenschaftlicher Arbeiten (Stand Mai 2026)](docs/Richtlinien-wissenschaftliche-Arbeiten-UniBw-Mai-2026.pdf) – herausgegeben vom Dekanat der Fakultät für Betriebswirtschaft. Maßgeblich sind immer die Prüfungsordnung und die Vorgaben der betreuenden Professur; kläre Abweichungen (z. B. Seitenränder, Schrift, Zitierstil) vorab.
+
 ![Vorschau: Titelseite, Inhaltsverzeichnis, Kapitel mit Abbildung und Code-Anhang](docs/preview.png)
 
 <sub>Titelseite · Inhaltsverzeichnis · Kapitel mit Abbildung · Code-Anhang – erzeugt aus dieser Vorlage ohne Änderungen.</sub>
@@ -544,6 +546,7 @@ Diese Vorlage steht unter der [Creative Commons Attribution 4.0 International (C
 
 | Bestandteil | Rechte |
 |---|---|
+| `docs/Richtlinien-wissenschaftliche-Arbeiten-UniBw-Mai-2026.pdf` | Richtlinien des Dekanats der Fakultät für Betriebswirtschaft der UniBw München. Alle Rechte bei der UniBw M; nur zur Information beigelegt. |
 | `resources/Signet_UniBw.pdf`, `resources/Athene*.png` | Logo und Signet der Universität der Bundeswehr München. Alle Rechte bei der UniBw M; nur für Arbeiten an der UniBw verwenden. |
 | `bibliography/ieee-grouped.csl` | Basiert auf dem IEEE-Stil aus dem [Zotero-Stilrepositorium](https://www.zotero.org/styles/ieee); eigene Anpassung: gruppierte Verweise `[2, 3]`. Als Bearbeitung weiterhin [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). |
 | Schrift *Libertinus Serif* | In Typst enthalten, [SIL Open Font License 1.1](https://github.com/alerque/libertinus/blob/master/OFL.txt) – nicht Teil dieses Repositorys. |
