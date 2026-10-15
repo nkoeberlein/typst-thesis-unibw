@@ -9,7 +9,7 @@ Frontmatter-Seiten (vor dem Inhaltsverzeichnis). Alle nutzen `metadata.typ` für
 | `title-page.typ`       | Titelseite: Signet, Fakultät/Institut/Professur/Aufgabensteller im Kopf, Titel, Autor, Betreuer, Datum | Ja |
 | `title-page_alternative.typ` | Schlichtere Variante der Titelseite; statt `title-page.typ` in `main.typ` einbinden | Alternativ |
 | `abstract.typ`         | Zusammenfassung (Deutsch & Englisch) | Empfohlen |
-| `declaration.typ`      | Eidesstattliche Erklärung | Ja (für Abgabe) |
+| `declaration.typ`      | Eigenständigkeitserklärung nach UniBw-Muster (Mai 2026), wortgleich mit LaTeX `default_frame/Eigenstaendigkeitserklaerung.tex` – Änderungen in beiden Vorlagen nachziehen | Ja (für Abgabe) |
 | `acknowledgments.typ`  | Danksagung | Optional |
 | `task-description.typ` | Aufgabenstellung: Überschrift + ein Platzhalter-Absatz (hochschulspezifisch) | Optional |
 

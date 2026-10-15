@@ -147,7 +147,7 @@
 // #include "content/anhang-zusatzdaten.typ"
 
 // ===================================================================
-// EIDESSTATTLICHE ERKLÄRUNG
+// EIGENSTÄNDIGKEITSERKLÄRUNG
 // ===================================================================
 
 #include "pages/declaration.typ"

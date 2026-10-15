@@ -32,7 +32,7 @@ erfüllt:
 Trotz der umfassenden Funktionalität weist die Vorlage einige Einschränkungen auf:
 
 - Die Vorlage ist auf deutsche Hochschulen (insbesondere die UniBw München)
-  zugeschnitten. Für andere Institutionen müssen ggf. Logo, Eidesstattliche Erklärung
+  zugeschnitten. Für andere Institutionen müssen ggf. Logo, Eigenständigkeitserklärung
   und Schreibkonventionen angepasst werden.
 - Als Schrift ist *Libertinus Serif* gesetzt, die in Typst bereits enthalten ist. Eigene
   Schriften legst du in `fonts/` ab und trägst sie in `lib/template.typ` ein.

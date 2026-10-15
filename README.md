@@ -105,7 +105,7 @@ chapters/                # HIER schreibst du deine Kapitel!
 pages/                   # Frontmatter-Seiten
   title-page.typ         # Titelseite (nutzt metadata.typ)
   abstract.typ           # Zusammenfassung (Deutsch + Englisch)
-  declaration.typ        # Eidesstattliche Erklärung
+  declaration.typ        # Eigenständigkeitserklärung (Muster UniBw)
   task-description.typ   # Aufgabenstellung (optional)
   acknowledgments.typ    # Danksagung (optional)
 bibliography/
