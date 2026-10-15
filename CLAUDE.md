@@ -1,7 +1,7 @@
 # typst-thesis-unibw
 
 Typst-Vorlage für wissenschaftliche Arbeiten (Bachelor/Master/Seminar) an der Universität der Bundeswehr München.
-Schwesterprojekt: LaTeX-Version unter `../wissenschaftlArbeit_UniBw_latex` (GitHub `latex-vorlage-unibw-inf`).
+Schwesterprojekt: LaTeX-Version unter `../wissenschaftlArbeit_UniBw_latex` (GitHub `latex-thesis-unibw`).
 
 ## Einstiegspunkte
 

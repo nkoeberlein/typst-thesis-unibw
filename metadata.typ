@@ -13,7 +13,7 @@
 
 // --- Institution ---
 #let myuniversity = "Universität der Bundeswehr München"
-#let myfaculty = "Fakultät für Informatik"
+#let myfaculty = "Fakultät für ..."
 #let myinstitute = "Institut für ..."
 #let myprofessur = "Professur für ..."
 

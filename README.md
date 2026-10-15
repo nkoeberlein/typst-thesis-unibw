@@ -2,12 +2,12 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-Eine moderne, gut dokumentierte Typst-Vorlage für Bachelor-, Master- und Seminararbeiten – optimiert für Studierende, die zum ersten Mal mit Typst arbeiten.
+Eine moderne, gut dokumentierte Typst-Vorlage für Seminar-, Bachelor- und Masterarbeiten an der Universität der Bundeswehr München – für alle Fakultäten und optimiert für Studierende, die zum ersten Mal mit Typst arbeiten.
 
 > **Was ist Typst?** Typst ist ein alternatives Textsatzsystem zu LaTeX. Es ist schneller, die Syntax ist einfacher (wie Markdown) und Fehlermeldungen sind verständlicher.
 
 > **Lieber LaTeX statt Typst?** Es gibt dieselbe Vorlage auch als LuaLaTeX-Version mit gleichem Aufbau und gleichen Metadaten:
-> [latex-vorlage-unibw-inf](https://github.com/nkoeberlein/latex-vorlage-unibw-inf)
+> [latex-thesis-unibw](https://github.com/nkoeberlein/latex-thesis-unibw)
 
 > **📘 Formale Vorgaben:** Maßgeblich sind die Prüfungsordnung, die Richtlinien der Fakultät und die Vorgaben der betreuenden Professur.
 
